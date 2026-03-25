@@ -1,0 +1,28 @@
+import express from 'express';
+import userRoutes from './src/routes/userroutes.js';
+import itensRoutes from './src/routes/itensroutes.js'; 
+import authRoutes from './src/routes/authroutes.js'; 
+
+const app = express();
+
+app.use(express.json());
+
+// Rotas
+app.use('/users', userRoutes);
+app.use('/itens', itensRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
+
+// Rota padrão para rotas não encontradas
+app.use((req, res) => {
+    res.status(404).json({ message: 'Rota não encontrada' });
+});
+
+// Middleware de erro
+app.use((err, req, res, next) => {
+    res.status(500).json({ error: err.message });
+});
+
+
+
+export default app;
