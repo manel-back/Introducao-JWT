@@ -37,7 +37,7 @@ export function deleteItem(req, res) {
     const index = itens.findIndex(item => item.id === id);
 
     if (index === -1) {
-        return res.status(404).json({ message: "Usuário não encontrado" });
+        return res.status(404).json({ message: "Item não encontrado" });
     }
 
     const deletedItem = itens.splice(index, 1);
@@ -47,3 +47,12 @@ export function deleteItem(req, res) {
         item: deletedItem[0]
     });
 }
+
+export function getItemById(req, res) {
+    const id = parseInt(req.params.id);
+    const item = itens.find(u => u.id === id);
+    if (!item) {
+      return res.status(404).json({ message: "Item não encontrado" });
+    }
+    res.status(200).json(item);
+  }
