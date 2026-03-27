@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 const SECRET = 'chave_secreta_segura';
 
 export function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorizaton'];
+    const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]; // Bearer <token>
 
     if (!token) {

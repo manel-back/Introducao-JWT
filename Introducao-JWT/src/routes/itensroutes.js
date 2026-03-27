@@ -1,5 +1,6 @@
 import express from "express";
 import { getAllItens, getItemById, createItem, updateItem, deleteItem } from "../controllers/itenscontroller.js";
+import { authenticateToken } from '../middleware/authmiddleware.js';
 
 const router = express.Router();
 

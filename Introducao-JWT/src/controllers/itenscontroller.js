@@ -1,11 +1,20 @@
 let itens = [
-    { id: 1, name: 'Banana', quantidade: 10},
-    { id: 2, name: 'Laranja', quantidade: 5}
+    { id: 1, name: 'Banana', quantidade: "10"},
+    { id: 2, name: 'Laranja', quantidade: "5"}
 ];
 
 export function  getAllItens(req, res) {
    res.status(200).json(itens);
 }
+
+export function getItemById(req, res) {
+    const id = parseInt(req.params.id);
+    const item = itens.find(i => i.id === id);
+    if (!item) {
+      return res.status(404).json({ message: "Item não encontrado" });
+    }
+    res.status(200).json(item);
+  }
 
 export function createItem(req, res) {
     const newItem = req.body;
@@ -47,12 +56,3 @@ export function deleteItem(req, res) {
         item: deletedItem[0]
     });
 }
-
-export function getItemById(req, res) {
-    const id = parseInt(req.params.id);
-    const item = itens.find(u => u.id === id);
-    if (!item) {
-      return res.status(404).json({ message: "Item não encontrado" });
-    }
-    res.status(200).json(item);
-  }

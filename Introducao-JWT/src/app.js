@@ -1,7 +1,7 @@
 import express from 'express';
-import userRoutes from './src/routes/userroutes.js';
-import itensRoutes from './src/routes/itensroutes.js'; 
-import authRoutes from './src/routes/authroutes.js'; 
+import userRoutes from './routes/userroutes.js';
+import itensRoutes from './routes/itensroutes.js'; 
+import authRoutes from './routes/authroutes.js'; 
 
 const app = express();
 
@@ -10,7 +10,6 @@ app.use(express.json());
 // Rotas
 app.use('/users', userRoutes);
 app.use('/itens', itensRoutes);
-app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 
 // Rota padrão para rotas não encontradas
